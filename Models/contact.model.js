@@ -14,8 +14,7 @@ var contactSchema = new mongoose.Schema({
         required:'This field is required'
     },
     dob: {
-        type: Number,
-        required:true
+        type: Number
     },
     company: {
         type: String,

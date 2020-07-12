@@ -2,7 +2,7 @@ require('./Models/db');
 var express = require('express');
 const path = require('path');
 const expressHandlebars = require('express-handlebars');
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+// const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const crudContacts = require('./Controller/crudContacts');
 const bodyParser = require('body-parser');
 
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.set('views', path.join(__dirname, '/views/'));
 app.engine('hbs', expressHandlebars({
-    hbs: allowInsecurePrototypeAccess(expressHandlebars),
+    // hbs: allowInsecurePrototypeAccess(expressHandlebars),
     extname: 'hbs', defaultLayout: 'mainLayout',
     layoutsDir: __dirname + '/views/layouts/',
 }));

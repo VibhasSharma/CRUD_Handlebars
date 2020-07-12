@@ -5,7 +5,7 @@ const Contact = mongoose.model('ContactCollection');
 
 router.get('/', (req,res) => {
     res.render('contacts/addOrEdit', {
-        viewTitle: "INSERT A NEW CONTACT"
+        viewTitle: "Create a new Contact"
     });
 });
 
@@ -30,7 +30,7 @@ function insertRecord(req, res) {
                 console.log(err.name);
                 handleValidationError(err, req.body);
                 res.render("contacts/addOrEdit",{
-                    viewTitle: "INSERT A NEW CONTACT",
+                    viewTitle: "Create a new Contact",
                     contact: req.body
                 });
             }   
@@ -49,7 +49,7 @@ router.get('/list', (req, res) => {
                 // contactDocuments: context.contactDocuments
                 list: docs.map(Contact => Contact.toJSON())
             });
-            console.log(docs);
+            // console.log(docs);
         }else{
             console.log('Error in retrieving contact List: '+ err);
         }
@@ -73,5 +73,20 @@ function handleValidationError(err, body) {
         }
     }
 };
+
+//Click on pencil icon and edit the contact details
+router.get('/:id', (req, res) => {   //This is the mongo DB id inorder to retrieve a specific record
+    Contact.findById(req.params.id, (err, doc) => {
+        if(!err){
+            res.render('contacts/addOrEdit', {
+                viewTitle: "Update Contact Information",
+                contactUpdate: doc.toJSON
+            });
+            console.log(doc);
+        }else{
+            console.log('Error in retrieving contact List: '+ err);
+        }
+    });
+});
 
 module.exports = router;
