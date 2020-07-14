@@ -111,4 +111,15 @@ router.get('/:id', (req, res) => {   //This is the mongo DB id inorder to retrie
     });
 });
 
+router.get('/delete/:id', (req, res) => {
+    Contact.findByIdAndRemove(req.params.id, (err, doc) => {
+        if(!err){
+            res.redirect('/contactsList/list');
+        }
+        else{
+            console.log('Error in deleting the contact: ' + err);
+        }
+    });
+});
+
 module.exports = router;
