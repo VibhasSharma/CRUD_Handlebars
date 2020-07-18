@@ -10,15 +10,15 @@
 
 <div class='row'>
     {{#each list}}
-    <div class='col-md-3'>
+    <div class='col-md-4'>
         <div class='card'>
         {{!-- <img scr="male2.jpg" alt="Avatar" style="width:100%"/>     --}}
         <div class='container'>
             <h5><b>{{this.fName}} {{this.lName}}</b></h5>
-            <p>{{this.email}}</p>
-            <p>{{this.phoneNumber}}</p>
-            <p>{{this.dob}}</p>
-            <p>{{this.company}} 
+            <p><i class="fa fa-envelope fa-sm" aria-hidden="true" style="margin-right:5px"></i>{{this.email}}</p>
+            <p><i class="fa fa-phone fa-lg" aria-hidden="true" style="margin-right:5px"></i>{{this.phoneNumber}}</p>
+            <p><i class="fa fa-birthday-cake fa-sm" aria-hidden="true" style="margin-right:5px"></i>{{this.dob}}</p>
+            <p><i class="fa fa-briefcase fa-sm" aria-hidden="true" style="margin-right:5px"></i>{{this.company}} 
                 <a href="/contactsList/{{this._id}}"><i class="fa fa-pencil fa-sm" aria-hidden="true" style="float:right; margin: 5px 15px 0 0 "></i></a>
                 <a href = "/contactsList/delete/{{this._id}}" onclick="return confirm('Delete the record');"><i class="fa fa-trash fa-sm" aria-hidden="true" style="float:right; margin: 5px 10px 0 0 "></i></a>    
             </p>
