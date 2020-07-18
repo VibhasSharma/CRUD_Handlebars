@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var DateOnly = require('mongoose-dateonly')(mongoose);
 
 var contactSchema = new mongoose.Schema({
     fName: {
@@ -11,6 +12,10 @@ var contactSchema = new mongoose.Schema({
     },
     email: {
         type: String,
+        required:'This field is required'
+    },
+    phoneNumber: {
+        type: Number,
         required:'This field is required'
     },
     dob: {

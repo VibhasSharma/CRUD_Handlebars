@@ -22,6 +22,7 @@ function insertRecord(req, res) {
     contact.fName = req.body.fName;
     contact.lName = req.body.lName;
     contact.email = req.body.email;
+    contact.phoneNumber = req.body.phoneNumber;
     contact.dob = req.body.dob;
     contact.company = req.body.company;
     
@@ -90,6 +91,8 @@ function handleValidationError(err, body) {
             case 'email':
                 body['emailError'] = err.errors[field].message;
                 break;
+            case 'phoneNumber':
+                body['phoneNumberError'] = err.errors[field].message;    
             default:
                 break;
         }
