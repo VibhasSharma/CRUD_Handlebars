@@ -64,7 +64,7 @@ function updateRecord(req, res) {
     });
 }
 
-
+// Contact List
 router.get('/list', (req, res) => {
     Contact.find((err, docs) => {
         if(!err){
@@ -75,6 +75,20 @@ router.get('/list', (req, res) => {
             // console.log(docs);
         }else{
             console.log('Error in retrieving contact List: '+ err);
+        }
+    });
+});
+
+// Contact Card
+router.get('/card', (req, res) => {
+    Contact.find((err, docs) => {
+        if(!err){
+            res.render('contacts/card', {        // contacts directory > card.hbs file
+                list: docs.map(Contact => Contact.toJSON())
+            });
+            // console.log(docs);
+        }else{
+            console.log('Error in retrieving contact Card: '+ err);
         }
     });
 });

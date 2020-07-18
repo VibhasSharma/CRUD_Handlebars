@@ -1,7 +1,7 @@
 <h3>Contact List</h3>
 <a class="btn btn-secondary" href="/contactsList"><i class="fa fa-plus"></i> Add New Contact </a>
 <table class="table table-striped">
-    <thread>
+    <thead>
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
@@ -11,7 +11,7 @@
             <th>Company</th>
             <th></th>
         </tr>
-    </thread>
+    </thead>
     <tbody>
         {{!-- <div>
             Welcome {{this.fName}}!
@@ -25,10 +25,11 @@
             <td>{{this.dob}}</td>
             <td>{{this.company}}</td>
             <td>
-                <a href="/contactsList/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-                <a href = "/contactsList/delete/{{this._id}}" onclick="return confirm('Delete the record');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                <a href="/contactsList/{{this._id}}"><i class="fa fa-pencil fa-sm" aria-hidden="true"></i></a>
+                <a href = "/contactsList/delete/{{this._id}}" onclick="return confirm('Delete the record');"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></a>
             </td>
         </tr>
         {{/each}}
+        <a class="btn btn-secondary" href="/contactsList/card"><i class="fa fa-address-card-o"></i> View Contact Card</a>
     </tbody>
 </table>

@@ -1,0 +1,30 @@
+<h3>Contact Card</h3>
+<a class="btn btn-secondary" href="/contactsList"><i class="fa fa-plus"></i> Add New Contact </a>
+<a class="btn btn-secondary" href="/contactsList/list"><i class="fa fa-list-alt"></i> View Contact List</a>
+<br><br>
+<style>
+    .card{box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; margin-bottom:15px;}
+    .card:hover {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
+    .container {padding: 15px 0 2px 16px;}
+</style>
+
+<div class='row'>
+    {{#each list}}
+    <div class='col-md-3'>
+        <div class='card'>
+        {{!-- <img scr="male2.jpg" alt="Avatar" style="width:100%"/>     --}}
+        <div class='container'>
+            <h5><b>{{this.fName}} {{this.lName}}</b></h5>
+            <p>{{this.email}}</p>
+            <p>{{this.phoneNumber}}</p>
+            <p>{{this.dob}}</p>
+            <p>{{this.company}} 
+                <a href="/contactsList/{{this._id}}"><i class="fa fa-pencil fa-sm" aria-hidden="true" style="float:right; margin: 5px 15px 0 0 "></i></a>
+                <a href = "/contactsList/delete/{{this._id}}" onclick="return confirm('Delete the record');"><i class="fa fa-trash fa-sm" aria-hidden="true" style="float:right; margin: 5px 10px 0 0 "></i></a>    
+            </p>
+        </div>
+        </div>
+    </div>    
+    {{/each}}
+</div>
+
