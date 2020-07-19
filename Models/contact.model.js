@@ -19,19 +19,13 @@ var contactSchema = new mongoose.Schema({
         required:'This field is required'
     },
     dob: {
-        type: Number
+        type: String
     },
     company: {
         type: String,
         required:true
     }
-}, {
-    toObject: {
-        virtuals: true,
-    },
-    toJSON: {
-        virtuals:true,
-    }
+
 });
 
 // Custom validation for email

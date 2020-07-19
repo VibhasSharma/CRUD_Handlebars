@@ -86,7 +86,6 @@ router.get('/card', (req, res) => {
             res.render('contacts/card', {        // contacts directory > card.hbs file
                 list: docs.map(Contact => Contact.toJSON())
             });
-            // console.log(docs);
         }else{
             console.log('Error in retrieving contact Card: '+ err);
         }
@@ -121,7 +120,7 @@ router.get('/:id', (req, res) => {   //This is the mongo DB id inorder to retrie
                 viewTitle: "Update Contact Information",
                 contact: doc.toJSON()
             });
-            console.log(doc);
+            // console.log(doc);
         }else{
             console.log('Error in retrieving contact List: '+ err);
         }

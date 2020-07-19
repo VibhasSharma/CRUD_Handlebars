@@ -25,8 +25,8 @@
             <td>{{this.dob}}</td>
             <td>{{this.company}}</td>
             <td>
-                <a href="/contactsList/{{this._id}}"><i class="fa fa-pencil fa-sm" aria-hidden="true"></i></a>
-                <a href = "/contactsList/delete/{{this._id}}" onclick="return confirm('Delete the record');"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></a>
+                <a href="/contactsList/{{this._id}}"><i class="fa fa-pencil fa-sm" aria-hidden="true"  data-toggle='tooltip' title='Edit'></i></a>
+                <a href = "/contactsList/delete/{{this._id}}" onclick="return confirm('Delete the record');"><i class="fa fa-trash fa-sm" aria-hidden="true"  data-toggle='tooltip' title='Delete'></i></a>
             </td>
         </tr>
         {{/each}}
