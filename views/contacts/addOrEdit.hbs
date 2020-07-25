@@ -2,18 +2,24 @@
 
 <form action="/contactsList" method="POST" autocomplete="off">
 <input type="hidden" name="_id" value="{{contact._id}}">
-    <div class="form-group">
-        {{!-- <label>First Name</label> --}}
-        <input type="text" class="form-control" name="fName" placeholder="First Name" value="{{contact.fName}}">
-        <div class="text-danger">
-            {{contact.fNameError}}
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            {{!-- <label>First Name</label> --}}
+            <input type="text" class="form-control" name="fName" placeholder="First Name" id="fnmBackend" value="{{contact.fName}}">
+            <div class="text-danger">
+                {{contact.fNameError}}
+            </div>
+        </div>        
+        <div class="form-group col-md-5">
+            <input type="text" class="form-control" name="lName" placeholder="Last Name" id="lnmBackend" value="{{contact.lName}}">
+            <div class="text-danger">
+                {{contact.lNameError}}
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control" name="lName" placeholder="Last Name" value="{{contact.lName}}">
-        <div class="text-danger">
-            {{contact.lNameError}}
+        <div class="form-group col-md-2">
+            <input type="text" class="form-control" name="nameInitials" placeholder="Name Initials" id="initials" onfocusout="nmInitials()" value="{{contact.nameInitials}}" readonly>
         </div>
+
     </div>
     <div class="form-group">
         <input type="text" class="form-control" name="email" placeholder="eMail Address" value="{{contact.email}}">
@@ -42,3 +48,17 @@
         <a class="btn btn-secondary" href="/contactsList/card"><i class="fa fa-address-card-o"></i> View Contact Card</a>
     </div>
 </form>
+
+{{!-- Logic to Dynamically calculate Name initials --}}
+<script>
+    function nmInitials(){
+        var firstName = document.getElementById("fnmBackend").value;
+        var lastName = document.getElementById("lnmBackend").value;
+        var fullName = firstName + " " + lastName;
+        console.log(fullName);
+        var initials = fullName.match(/\b\w/g) || [];
+        initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+        console.log(initials); 
+        document.getElementById("initials").value=initials;
+    }
+</script>

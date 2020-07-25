@@ -24,6 +24,9 @@ var contactSchema = new mongoose.Schema({
     company: {
         type: String,
         required:true
+    },
+    nameInitials: {
+        type: String
     }
 
 });

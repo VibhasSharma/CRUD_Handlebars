@@ -25,6 +25,7 @@ function insertRecord(req, res) {
     contact.phoneNumber = req.body.phoneNumber;
     contact.dob = req.body.dob;
     contact.company = req.body.company;
+    contact.nameInitials = req.body.nameInitials;
     
     contact.save((err, doc) => {
         if(!err){
