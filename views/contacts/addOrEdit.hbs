@@ -34,8 +34,11 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <input type="text" class="form-control" name="dob" placeholder="Date of Birth DD-Month-YYYY" value="{{contact.dob}}">
+        <div class="form-group col-md-3">
+            <input type="date" class="form-control" name="dob" placeholder="Date of Birth" value="{{contact.dob}}" id="date">
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" class="form-control" name="daysLeft" placeholder="Days Left until Birthday" id="daysUntilBirthday" onfocusout="daysLeftBirthday()" value="{{contact.daysLeft}}" readonly>
         </div>
         <div class="form-group col-md-6">
         <input type="text" class="form-control" name="company" placeholder="Company" value="{{contact.company}}">
@@ -60,5 +63,30 @@
         initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
         console.log(initials); 
         document.getElementById("initials").value=initials;
+    }
+
+    function daysLeftBirthday(){
+        var today = new Date();
+        var birthDateInput = document.getElementById("date").value;
+        var parsedDate = new Date(birthDateInput);
+        var date = parsedDate.getDate();
+        var parsedMonth = parsedDate.getMonth();
+        var actualMonth = parsedMonth+1;
+        var birthday = [date, actualMonth]
+        var bday = new Date(today.getFullYear(), birthday[1]-1, birthday[0]);
+        
+        if(today.getTime() > bday.getTime()){
+            bday.setFullYear(bday.getFullYear()+1);
+        }
+        var diff = bday.getTime() - today.getTime();
+        var days = Math.floor(diff/(60*60*24*1000));
+        console.log("Days left until birthday:: " + days)
+        document.getElementById("daysUntilBirthday").value=days;
+
+        console.log("Parsed Date:: "+parsedDate);
+        console.log("Today:: "+today);
+        console.log(date +" :: "+parsedMonth);
+        console.log(birthday);
+        console.log(bday);
     }
 </script>

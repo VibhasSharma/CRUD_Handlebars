@@ -9,7 +9,10 @@ const bodyParser = require('body-parser');
 
 var {contactSchema} = require('./Models/contact.model');
 
+
 var app = express();
+
+app.use(express.static('Public'));
 app.use(bodyParser.urlencoded({
     extended: true
 }));

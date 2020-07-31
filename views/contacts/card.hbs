@@ -7,17 +7,18 @@
     .card{box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; margin-bottom:15px;}
     .card:hover {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
     .container {padding: 15px 0 2px 16px;}
-    .circle {width: 35px; height: 35px; border-radius: 100%; font-size: 17px; color: #fff; text-align: center; background: #000; padding-top:5px; display:inline-block; float:left; margin: -7px 0 0 -5px}
+    .circle {width: 37px; height: 37px; border-radius: 100%; font-size: 17px; color: #fff; text-align: center; background: #000; padding-top:5px; display:inline-block; float:left; margin: -7px 0 0 -5px}
+    .dateLabel{float:right; width:30px; height:21px; font-size:13px; color:white; background-color:#fc6060; text-align: center; border-radius:3px; margin: 2px 15px 0 -5px; padding:2px}
 </style>
 
 <div class='row'>
     {{#each list}}
     <div class='col-md-4'>
         <div class='card'>
-        {{!-- <img scr="male2.jpg" alt="Avatar" style="width:100%"/>     --}}
+        {{!-- <img scr="../Public/male1.png" alt="Avatar" style="width:100%"/>     --}}
         <div class='container'>
             <div class='circle'>{{this.nameInitials}}</div>
-            <h5><b style='margin-left:6px'> {{this.fName}} {{this.lName}}</b></h5>
+            <h5><b style='margin-left:6px'> {{this.fName}} {{this.lName}}</b><label class='dateLabel' data-toggle='tooltip' title='Days left till birthday'>{{this.daysLeft}}</label></h5>
             <p><i class="fa fa-envelope fa-sm" aria-hidden="true" style="margin: 15px 7px 0 0"></i>{{this.email}}</p>
             <p><i class="fa fa-phone fa-lg" aria-hidden="true" style="margin-right:7px"></i>{{this.phoneNumber}}</p>
             <p><i class="fa fa-birthday-cake fa-sm" aria-hidden="true" style="margin-right:7px; color:#fc6060"></i>{{this.dob}}</p>

@@ -27,6 +27,9 @@ var contactSchema = new mongoose.Schema({
     },
     nameInitials: {
         type: String
+    },
+    daysLeft: {
+        type: Number
     }
 
 });
