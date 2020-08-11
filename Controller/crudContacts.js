@@ -81,7 +81,7 @@ router.get('/list', (req, res) => {
     });
 });
 
-// Contact Card
+// Contact Card, logic for number of days remaining till birthday calculation
 router.get('/card', (req, res) => {
     Contact.find((err, docs) => {
         if(!err){
@@ -118,9 +118,9 @@ function handleValidationError(err, body) {
     }
 };
 
+// function() calculate days remaining till birthday
 function daysLeftBirthday(birthDateInput){
     var today = new Date();
-    //var birthDateInput = document.getElementById("date").value;
     var parsedDate = new Date(birthDateInput);
     var date = parsedDate.getDate();
     var parsedMonth = parsedDate.getMonth();
