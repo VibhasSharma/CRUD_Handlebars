@@ -26,7 +26,7 @@ function insertRecord(req, res) {
     contact.dob = req.body.dob;
     contact.company = req.body.company;
     contact.nameInitials = req.body.nameInitials;
-    contact.daysLeft = req.body.daysLeft;
+    contact.daysLeft = null;
     
     contact.save((err, doc) => {
         if(!err){
@@ -85,8 +85,12 @@ router.get('/list', (req, res) => {
 router.get('/card', (req, res) => {
     Contact.find((err, docs) => {
         if(!err){
+            docs.map(contact => contact.toJSON());
+            docs.map(contact => {
+                contact.daysLeft = daysLeftBirthday(contact.dob);
+            });
             res.render('contacts/card', {        // contacts directory > card.hbs file
-                list: docs.map(Contact => Contact.toJSON())
+                list: docs.map(contact => contact.toJSON())
             });
         }else{
             console.log('Error in retrieving contact Card: '+ err);
@@ -112,6 +116,24 @@ function handleValidationError(err, body) {
                 break;
         }
     }
+};
+
+function daysLeftBirthday(birthDateInput){
+    var today = new Date();
+    //var birthDateInput = document.getElementById("date").value;
+    var parsedDate = new Date(birthDateInput);
+    var date = parsedDate.getDate();
+    var parsedMonth = parsedDate.getMonth();
+    var actualMonth = parsedMonth+1;
+    var birthday = [date, actualMonth]
+    var bday = new Date(today.getFullYear(), birthday[1]-1, birthday[0]);
+    
+    if(today.getTime() > bday.getTime()){
+        bday.setFullYear(bday.getFullYear()+1);
+    }
+    var diff = bday.getTime() - today.getTime();
+    var days = Math.floor(diff/(60*60*24*1000));
+    return days;
 };
 
 //Click on pencil icon and edit the contact details

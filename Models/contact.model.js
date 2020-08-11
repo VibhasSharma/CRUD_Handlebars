@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var DateOnly = require('mongoose-dateonly')(mongoose);
 
 var contactSchema = new mongoose.Schema({
     fName: {
