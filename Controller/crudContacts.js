@@ -2,6 +2,8 @@ const express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
 const Contact = mongoose.model('ContactCollection');
+const session = require('express-session'); 
+const flash = require('connect-flash'); 
 
 router.get('/', (req,res) => {
     res.render('contacts/addOrEdit', {
@@ -19,15 +21,18 @@ router.post('/', (req,res) => {   //route already provided in server.js
 
 function insertRecord(req, res) {
     var contact = new Contact();
-    contact.fName = req.body.fName;
+    contact.fName = req.body.fName;      //contact.(name in db model) = req.body.(name in html form)
     contact.lName = req.body.lName;
     contact.email = req.body.email;
     contact.phoneNumber = req.body.phoneNumber;
+    contact.nativeState = req.body.nativeState;
     contact.dob = req.body.dob;
     contact.company = req.body.company;
     contact.nameInitials = req.body.nameInitials;
-    contact.daysLeft = null;
-    
+    contact.city = req.body.city;
+    contact.daysLeft = req.body.daysLeft;     // If this value is set as null a record is created in MongoDB with null value, better this way
+    contact.yearOfBirth = yearOfBirth(contact.dob); 
+
     contact.save((err, doc) => {
         if(!err){
             res.redirect('contactsList/list');
@@ -81,13 +86,43 @@ router.get('/list', (req, res) => {
     });
 });
 
+router.use(session({ 
+    secret:'secret', 
+    saveUninitialized: true, 
+    resave: true
+})); 
+
+
+// Flash Message Middleware
+router.use((req, res, next) => {
+    res.locals.message = req.session.message;
+    // delete req.session.message;
+    next();
+});
+
 // Contact Card, logic for number of days remaining till birthday calculation
 router.get('/card', (req, res) => {
     Contact.find((err, docs) => {
         if(!err){
+            
             docs.map(contact => contact.toJSON());
             docs.map(contact => {
                 contact.daysLeft = daysLeftBirthday(contact.dob);
+
+                if(contact.daysLeft < 10){
+                    console.log(`${contact.fName}\'s birthday is in ${contact.daysLeft} days`);   
+                    req.session.message = {
+                        message: `${contact.fName}\'s birthday is in ${contact.daysLeft} days`,
+                        intro: 'It\'s almost time, '
+                    }      
+                    if(contact.daysLeft == 1){
+                        console.log(`${contact.fName}\'s birthday is tomorrow`);
+                        req.session.message = {
+                            message: `${contact.fName}\'s birthday is tomorrow`,
+                            intro: 'It\'s almost time, '
+                        }   
+                    }
+                }
             });
             res.render('contacts/card', {        // contacts directory > card.hbs file
                 list: docs.map(contact => contact.toJSON())
@@ -133,8 +168,14 @@ function daysLeftBirthday(birthDateInput){
     }
     var diff = bday.getTime() - today.getTime();
     var days = Math.floor(diff/(60*60*24*1000));
-    return days;
+    return (days + 1);
 };
+
+function yearOfBirth(birthDateInput){
+    var parsedDateforYear = new Date(birthDateInput);
+    var yob = parsedDateforYear.getFullYear();
+    return yob;
+}
 
 //Click on pencil icon and edit the contact details
 router.get('/:id', (req, res) => {   //This is the mongo DB id inorder to retrieve a specific record

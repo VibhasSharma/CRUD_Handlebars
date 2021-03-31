@@ -27,12 +27,22 @@
             {{contact.emailError}}
         </div>
     </div>
-    <div class="form-group">
-        <input type="text" class="form-control" name="phoneNumber" maxlength="10" placeholder="Phone Number" value="{{contact.phoneNumber}}">
-        <div class="text-danger">
-            {{contact.phoneNumberError}}
+
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <input type="text" class="form-control" name="phoneNumber" maxlength="10" placeholder="Phone Number" value="{{contact.phoneNumber}}">
+            <div class="text-danger">
+                {{contact.phoneNumberError}}
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <input type="text" class="form-control" name="nativeState" placeholder="Enter native state" value="{{contact.nativeState}}">
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" class="form-control" name="city" placeholder="City" value="{{contact.city}}">
         </div>
     </div>
+
     <div class="form-row">
         <div class="form-group col-md-4">
             <input type="date" class="form-control" name="dob" placeholder="Date of Birth" value="{{contact.dob}}" id="date">

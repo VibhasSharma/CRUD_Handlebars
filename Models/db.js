@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/ContactsDB');
-
 require('./contact.model');
+mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://localhost:27017/ContactsDB');
+const URI = 'mongodb+srv://admin:admin1@cluster0.5w5dt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+mongoose.connect(URI);

@@ -1,3 +1,14 @@
+{{#if message}}
+    {{!-- {{#each message}} --}}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>{{message.intro}}</strong>{{message.message}}
+        </div>
+    {{!-- {{/each}} --}}
+{{/if}}
+
 <h3>Contact Card</h3>
 <a class="btn btn-secondary" href="/contactsList"><i class="fa fa-plus"></i> Add New Contact </a>
 <a class="btn btn-secondary" href="/contactsList/list"><i class="fa fa-list-alt"></i> View Contact List</a>
@@ -30,5 +41,6 @@
     </div>    
     {{/each}}
 </div>
+
 
 

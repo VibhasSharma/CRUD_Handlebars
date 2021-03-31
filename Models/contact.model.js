@@ -17,6 +17,14 @@ var contactSchema = new mongoose.Schema({
         type: Number,
         required:'This field is required'
     },
+    nativeState: {
+        type: String,
+        required:'This field is required'
+    },
+    city: {
+        type: String,
+        required:'This field is required'
+    },
     dob: {
         type: String,
         required:'This field is required'
@@ -30,12 +38,13 @@ var contactSchema = new mongoose.Schema({
     },
     daysLeft: {
         type: Number
+    },
+    yearOfBirth: {
+        type: Number
     }
 
 });
 
 // Custom validation for email
-
-
 mongoose.model('ContactCollection', contactSchema);
 module.exports = {contactSchema};
