@@ -30,7 +30,7 @@ function insertRecord(req, res) {
     contact.company = req.body.company;
     contact.nameInitials = req.body.nameInitials;
     contact.city = req.body.city;
-    contact.daysLeft = req.body.daysLeft;     // If this value is set as null a record is created in MongoDB with null value, better this way
+    contact.daysLeft = daysLeftBirthday(contact.dob);     // If this value is set as null a record is created in MongoDB with null value, better this way
     contact.yearOfBirth = yearOfBirth(contact.dob); 
 
     contact.save((err, doc) => {
