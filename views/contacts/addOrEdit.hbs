@@ -35,9 +35,52 @@
                 {{contact.phoneNumberError}}
             </div>
         </div>
+
         <div class="form-group col-md-4">
-            <input type="text" class="form-control" name="nativeState" placeholder="Enter native state" value="{{contact.nativeState}}">
+            <select class="form-control form-control-md" aria-label="Default select example" name="nativeStateSelect">
+                <option>--- Enter Native State ---</option>
+                <option id="state" name="nativeState" value="Andhra Pradesh">Andhra Pradesh</option>
+                <option name="nativeState" value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option name="nativeState" value="Assam">Assam</option>
+                <option name="nativeState" value="Bihar">Bihar</option>
+                <option name="nativeState" value="Chhattisgarh">Chhattisgarh</option>
+                <option name="nativeState" value="Goa">Goa</option>
+                <option name="nativeState" value="Gujarat">Gujarat</option>
+                <option name="nativeState" value="Haryana">Haryana</option>
+                <option name="nativeState" value="Himachal Pradesh">Himachal Pradesh</option>
+                <option name="nativeState" value="Jharkhand">Jharkhand</option>
+                <option name="nativeState" value="Karnataka">Karnataka</option>
+                <option name="nativeState" value="Kerala">Kerala</option>
+                <option name="nativeState" value="Madhya Pradesh">Madhya Pradesh</option>
+                <option name="nativeState" value="Maharashtra">Maharashtra</option>
+                <option name="nativeState" value="Manipur">Manipur</option>
+                <option name="nativeState" value="Meghalaya">Meghalaya</option>
+                <option name="nativeState" value="Mizoram">Mizoram</option>
+                <option name="nativeState" value="Nagaland">Nagaland</option>
+                <option name="nativeState" value="Odisha">Odisha</option>
+                <option name="nativeState" value="Punjab">Punjab</option>
+                <option name="nativeState" value="Rajasthan">Rajasthan</option>
+                <option name="nativeState" value="Sikkim">Sikkim</option>
+                <option name="nativeState" value="Tamil Nadu">Tamil Nadu</option>
+                <option name="nativeState" value="Telangana">Telangana</option>
+                <option name="nativeState" value="Tripura">Tripura</option>
+                <option name="nativeState" value="Uttar Pradesh">Uttar Pradesh</option>
+                <option name="nativeState" value="Uttarakhand">Uttarakhand</option>
+                <option name="nativeState" value="West Bengal">West Bengal</option>
+                <option name="nativeState" value="Andaman and Nicobar Island">Andaman and Nicobar Island</option>
+                <option name="nativeState" value="Chandigarh">Chandigarh</option>
+                <option name="nativeState" value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                <option name="nativeState" value="Delhi">Delhi</option>
+                <option name="nativeState" value="Ladakh">Ladakh</option>
+                <option name="nativeState" value="Lakshadweep">Lakshadweep</option>
+                <option name="nativeState" value="Jammu and Kashmir">Jammu and Kashmir</option>
+                <option name="nativeState" value="Puducherry">Puducherry</option>
+            </select>
+            <div class="text-danger">
+                {{contact.nativeState}}
+            </div>
         </div>
+        
         <div class="form-group col-md-3">
             <input type="text" class="form-control" name="city" placeholder="City" value="{{contact.city}}">
         </div>

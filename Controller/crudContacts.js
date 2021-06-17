@@ -25,17 +25,19 @@ function insertRecord(req, res) {
     contact.lName = req.body.lName;
     contact.email = req.body.email;
     contact.phoneNumber = req.body.phoneNumber;
-    contact.nativeState = req.body.nativeState;
+    contact.nativeState = req.body.nativeStateSelect;
     contact.dob = req.body.dob;
     contact.company = req.body.company;
     contact.nameInitials = req.body.nameInitials;
     contact.city = req.body.city;
-    contact.daysLeft = daysLeftBirthday(contact.dob);     // If this value is set as null a record is created in MongoDB with null value, better this way
+    contact.daysLeft = req.body.daysLeft;
+    // contact.daysLeft = daysLeftBirthday(contact.dob);     // If this value is set as null a record is created in MongoDB with null value, better this way
     contact.yearOfBirth = yearOfBirth(contact.dob); 
 
     contact.save((err, doc) => {
         if(!err){
             res.redirect('contactsList/list');
+            console.log(contact.nativeState);
         }
         else{
             if(err.name == 'ValidationError'){
@@ -79,7 +81,6 @@ router.get('/list', (req, res) => {
                 // contactDocuments: context.contactDocuments
                 list: docs.map(Contact => Contact.toJSON())
             });
-            // console.log(docs);
         }else{
             console.log('Error in retrieving contact List: '+ err);
         }
@@ -99,6 +100,13 @@ router.use((req, res, next) => {
     // delete req.session.message;
     next();
 });
+
+// router.use((req, res, next) => {
+//     res.status(200).json({
+//         message: 'ap is running'
+//     })
+//     next();
+// });
 
 // Contact Card, logic for number of days remaining till birthday calculation
 router.get('/card', (req, res) => {
@@ -147,6 +155,9 @@ function handleValidationError(err, body) {
                 break;
             case 'phoneNumber':
                 body['phoneNumberError'] = err.errors[field].message;    
+                break;
+            case 'nativeState':
+                body['nativeStateError'] = err.errors[field].message;   
             default:
                 break;
         }
