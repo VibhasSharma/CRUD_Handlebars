@@ -25,7 +25,7 @@ function insertRecord(req, res) {
     contact.lName = req.body.lName;
     contact.email = req.body.email;
     contact.phoneNumber = req.body.phoneNumber;
-    contact.nativeState = req.body.nativeStateSelect;
+    contact.nativeState = req.body.nativeStateSelect;     // the options are fetched using the Select name attribute
     contact.dob = req.body.dob;
     contact.company = req.body.company;
     contact.nameInitials = req.body.nameInitials;
