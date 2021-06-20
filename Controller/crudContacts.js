@@ -25,7 +25,7 @@ function insertRecord(req, res) {
     contact.lName = req.body.lName;
     contact.email = req.body.email;
     contact.phoneNumber = req.body.phoneNumber;
-    contact.nativeState = req.body.nativeStateSelect;     // the options are fetched using the Select name attribute
+    contact.nativeStateSelect = req.body.nativeStateSelect;     // the options are fetched using the Select name attribute
     contact.dob = req.body.dob;
     contact.company = req.body.company;
     contact.nameInitials = req.body.nameInitials;
@@ -37,7 +37,7 @@ function insertRecord(req, res) {
     contact.save((err, doc) => {
         if(!err){
             res.redirect('contactsList/list');
-            console.log(contact.nativeState);
+            console.log(contact.nativeStateSelect);
         }
         else{
             if(err.name == 'ValidationError'){
@@ -157,7 +157,13 @@ function handleValidationError(err, body) {
                 body['phoneNumberError'] = err.errors[field].message;    
                 break;
             case 'nativeState':
-                body['nativeStateError'] = err.errors[field].message;   
+                body['nativeStateSelectError'] = err.errors[field].message;
+                break;
+            case 'dob':
+                    body['dobError'] = err.errors[field].message;
+                break;
+            case 'company':
+                body['companyError'] = err.errors[field].message;   
             default:
                 break;
         }

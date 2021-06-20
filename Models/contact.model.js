@@ -17,7 +17,7 @@ var contactSchema = new mongoose.Schema({
         type: Number,
         required:'This field is required'
     },
-    nativeState: {
+    nativeStateSelect: {
         type: String,
         required:'This field is required'
     },
@@ -31,7 +31,7 @@ var contactSchema = new mongoose.Schema({
     },
     company: {
         type: String,
-        required:true
+        required:'This field is required'
     },
     nameInitials: {
         type: String
