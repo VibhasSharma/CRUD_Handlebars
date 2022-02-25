@@ -4,11 +4,21 @@ const mongoose = require('mongoose');
 const Contact = mongoose.model('ContactCollection');
 const session = require('express-session'); 
 const flash = require('connect-flash'); 
+const { Collection } = require('mongoose');
 
 router.get('/', (req,res) => {
     res.render('contacts/addOrEdit', {
         viewTitle: "Create a new Contact"
     });
+});
+
+router.get('/getContactsJSON', async (req, res) => {
+    try{
+        const contacts = await Contact.find();
+        res.json(contacts);
+    }catch(err){
+        res.json({message: err});
+    }
 });
 
 router.post('/', (req,res) => {   //route already provided in server.js
@@ -55,8 +65,9 @@ function insertRecord(req, res) {
     });
 };
 
+
 function updateRecord(req, res) {
-    Contact.findOneAndUpdate({_id: req.body._id}, req.body, {new: true}, (err, doc) => {           //With new: true, inside of the doc variable we'll have the 
+    Contact.findOneAndUpdate({_id: req.body._id}, req.body, {new: true}, {useFindAndModify: false}, (err, doc) => {           //With new: true, inside of the doc variable we'll have the 
         if(!err){                                                                                  //value of updated fields, if false we'll have old value of record
             res.redirect('contactsList/list');
         }else{
@@ -118,13 +129,11 @@ router.get('/card', (req, res) => {
                 contact.daysLeft = daysLeftBirthday(contact.dob);
 
                 if(contact.daysLeft < 10){
-                    console.log(`${contact.fName}\'s birthday is in ${contact.daysLeft} days`);   
                     req.session.message = {
                         message: `${contact.fName}\'s birthday is in ${contact.daysLeft} days`,
                         intro: 'It\'s almost time, '
                     }      
                     if(contact.daysLeft == 1){
-                        console.log(`${contact.fName}\'s birthday is tomorrow`);
                         req.session.message = {
                             message: `${contact.fName}\'s birthday is tomorrow`,
                             intro: 'It\'s almost time, '
