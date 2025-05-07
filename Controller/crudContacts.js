@@ -112,12 +112,6 @@ router.use((req, res, next) => {
     next();
 });
 
-// router.use((req, res, next) => {
-//     res.status(200).json({
-//         message: 'ap is running'
-//     })
-//     next();
-// });
 
 // Contact Card, logic for number of days remaining till birthday calculation
 router.get('/card', (req, res) => {
