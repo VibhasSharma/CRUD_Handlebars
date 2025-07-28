@@ -6,6 +6,7 @@ const session = require('express-session');
 const flash = require('connect-flash'); 
 const { Collection } = require('mongoose');
 
+// CRUD controller
 router.get('/', (req,res) => {
     res.render('contacts/addOrEdit', {
         viewTitle: "Create a new Contact"
