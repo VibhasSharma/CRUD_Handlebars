@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+// Schema definition
 var contactSchema = new mongoose.Schema({
     fName: {
         type: String,
