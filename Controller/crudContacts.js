@@ -109,7 +109,6 @@ router.use(session({
 // Flash Message Middleware
 router.use((req, res, next) => {
     res.locals.message = req.session.message;
-    // delete req.session.message;
     next();
 });
 
