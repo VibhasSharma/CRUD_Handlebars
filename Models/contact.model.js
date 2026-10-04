@@ -46,6 +46,6 @@ var contactSchema = new mongoose.Schema({
 
 });
 
-// Custom validation for email of the input received
+// Custom validation for email
 mongoose.model('ContactCollection', contactSchema);
 module.exports = {contactSchema};
