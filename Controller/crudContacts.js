@@ -106,7 +106,7 @@ router.use(session({
 })); 
 
 
-// Flash Message Middleware
+// Flash Message external Middleware
 router.use((req, res, next) => {
     res.locals.message = req.session.message;
     next();
